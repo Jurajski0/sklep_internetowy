@@ -40,17 +40,39 @@ require_once 'db.php';
         <?php
           if(isset($_POST["submit"]))
           {
-
             $username = $_POST['username'];
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            $input = $pdo -> prepare("INSERT INTO users (username, email, password) VALUES(:username, :email, :password)");
-            $input -> bindValue(':username', $username, PDO::PARAM_STR);
-            $input -> bindValue(':email', $email, PDO::PARAM_STR);
-            $input -> bindValue(':password', $password, PDO::PARAM_STR);
-            $exec = $input -> execute();
-            echo "<meta http-equiv='refresh' content='0'>";
+            if (empty($username) || empty($email) || empty($password)) {
+              echo "<p style='color:red;'>Wszystkie pola do rejestracji są wymagane!!</p>";
+            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+              echo "<p style='color:red;'>Nie prawidłowy format E-mail!!</p>";
+            } else {
+              $checkUser = $pdo->prepare("SELECT COUNT(*) FROM users WHERE username=:username");
+              $checkUser->bindValue(':username', $username, PDO::PARAM_STR);
+              $checkUser->execute();
+              $userExists = $checkUser->fetchColumn();
+            
+              if ($userExists > 0){
+                echo "<p style='color:red;'>Ta nazwa użytkownika jest już zajęta. Wybierz inną nazwę użytkownika.</p>";
+              }elseif (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*?\/])[A-Za-z\d!@#$%^&*?\/]{8,}$/', $password)){
+                echo "<p style='color:red;'>Hasło musi być dłuższe niż 8 znaków. Musi zawierać conajmniej jedną dużą i jedną małą literę, jedną cyfrę i jeden znak specjalny.</p>"
+              }else {
+                $hashed = password_hash($password, PASSWORD_BCRYPT);
+
+                $input = $pdo -> prepare("INSERT INTO users (username, email, password) VALUES(:username, :email, :password)");
+                $input -> bindValue(':username', $username, PDO::PARAM_STR);
+                $input -> bindValue(':email', $email, PDO::PARAM_STR);
+                $input -> bindValue(':password', $hashed, PDO::PARAM_STR);
+                $exec = $input -> execute();
+                if ($exec) {
+                  echo "<p style='color:green;'>Pomyślnie zarejestrowano!!</p>";
+                }else {
+                  echo "<p style='color:red;'>Wystąpił błąd. Spróbuj ponownie.</p>";
+                }
+              }
+            }
           }
         ?>
 
