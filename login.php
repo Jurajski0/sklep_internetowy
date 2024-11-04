@@ -104,28 +104,33 @@ if(isset($_POST["submit"])) {
                 <button type="button" id="signUpButton">Sign up</button>
                 <button type="button" class="disable" id="signInButton">Sign in</button>
             </div>
-            <form method="post">
-                <input type="hidden" name="action" id="formAction" value="register"/>
-                <div class="input-group">
-                    <div class="input-field" id="nameField">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" name="username" placeholder="Username"/>
+                <form method="post">
+                    <input type="hidden" name="action" id="formAction" value="register"/>
+                    <div class="input-group">
+                        <div class="input-field" id="nameField">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" name="username" placeholder="Username"/>
+                        </div>
+                        <div class="input-field" id="emailField">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" name="email" placeholder="E-mail"/>
+                        </div>
+                        <div class="input-field" id="emailOrUserField" style="display: none;">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" name="emailOrUser" placeholder="Email or Username"/>
+                        </div>
+                        <div class="input-field">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" name="password" placeholder="Password"/>
+                        </div>
+                        <button name="submit" class="submit-button">Submit</button>
                     </div>
-                    <div class="input-field" id="emailField">
-                        <i class="fa-solid fa-envelope"></i>
-                        <input type="email" name="email" placeholder="E-mail"/>
-                    </div>
-                    <div class="input-field" id="emailOrUserField" style="display: none;">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" name="emailOrUser" placeholder="Email or Username"/>
-                    </div>
-                    <div class="input-field">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="password" name="password" placeholder="Password"/>
-                    </div>
-                    <button name="submit" class="submit-button">Submit</button>
-                </div>
-            </form>
+                </form>            
+            <div id="LostPasw">
+                <form action="LostPasw.php" method="get">
+                    <button type="submit" id="zapomnialem" class="submit-button" style="display: none;"> Przypomnij hasło</button>
+                </form>
+            </div>
         </div>
     </div>
     <script src="scripts/login.js"></script>

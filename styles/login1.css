@@ -1,6 +1,6 @@
 @font-face {
 	font-family: MyriadProRegular;
-	src: url(".fonts/MyriadPro-Regular.ttf");
+	src: url(./fonts/Myriad\ Pro\ Regular.ttf);
 }
 * {
 	margin: 0px;
@@ -58,9 +58,11 @@
 	max-height: 65px;
 	transition: max-height 0.5s;
 	overflow: hidden;
+	padding-left: 15px;
 }
 
 input {
+	width: 100%;
 	background: transparent;
 	border: 0;
 	outline: 0;
@@ -68,8 +70,10 @@ input {
 }
 
 .input-field i {
-	margin-left: 15px;
+	margin-right: 10px;
 	color: #999;
+	font-size: 1.2em;
+	vertical-align: middle;
 }
 
 form p {
@@ -118,44 +122,8 @@ form p a {
 	background-color: #2a006d;
 }
 
-#zapomnialem {
-	width: 35%;
-	float: right;
-}
-
-#LostPasw {
-	text-align: center;
-}
 .input-group {
 	height: 230px;
-}
-
-.error-box {
-	background-color: #ffdddd;
-	border-left: 6px solid #f44336;
-	color: #a94442;
-	padding: 15px;
-	margin-bottom: 20px;
-	border-radius: 4px;
-	text-align: left;
-	font-size: 14px;
-}
-.error-box p {
-	margin: 0;
-}
-
-.success-box {
-	background-color: #ddffdd;
-	border-left: 6px solid #4caf50;
-	color: #3c763d;
-	padding: 15px;
-	margin-bottom: 20px;
-	border-radius: 4px;
-	text-align: left;
-	font-size: 14px;
-}
-.success-box p {
-	margin: 0;
 }
 
 .buttons button.disable {

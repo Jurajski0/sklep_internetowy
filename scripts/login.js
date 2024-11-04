@@ -5,6 +5,7 @@ let emailField = document.getElementById("emailField");
 let emailOrUserField = document.getElementById("emailOrUserField");
 let title = document.getElementById("title");
 let formAction = document.getElementById("formAction");
+let zapomnialemButton = document.getElementById("zapomnialem");
 
 signInButton.onclick = () => {
 	nameField.style.display = "none";
@@ -14,6 +15,7 @@ signInButton.onclick = () => {
 	formAction.value = "login";
 	signUpButton.classList.add("disable");
 	signInButton.classList.remove("disable");
+	zapomnialemButton.style.display = "block";
 };
 
 signUpButton.onclick = () => {
@@ -24,4 +26,5 @@ signUpButton.onclick = () => {
 	formAction.value = "register";
 	signUpButton.classList.remove("disable");
 	signInButton.classList.add("disable");
+	zapomnialemButton.style.display = "none";
 };
